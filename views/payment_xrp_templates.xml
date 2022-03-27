@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="xrp_form">
+            <input type="hidden" name="data_set"
+                t-att-data-action-url="payment_link" data-remove-me=""/>
+            <t t-if="return_url">
+                <input type="hidden" name='return_url' t-att-value='return_url'/>
+            </t>
+            <input type="hidden" name='reference' t-att-value='reference'/>
+            <input type="hidden" name='amount' t-att-value='amount'/>
+            <input type="hidden" name='currency' t-att-value='currency.name'/>
+            <input type="hidden" name='pay_link' t-att-value='pay_link'/>
+            <input type="hidden" name='test_mode' t-att-value='test_mode'/>
+            <input type="hidden" name='vendor' t-att-value='vendor'/>
+        </template>
+
+        <template id="pay">
+            <div class="checkout-container"></div>
+            <script src="https://cdn.xrp.com/xrp/xrp.js"></script>
+            <script type="text/javascript">
+                Xrp.Setup({ vendor: <t t-esc="vendor"/> });
+                <t t-if="test_mode">
+                    Xrp.Environment.set('sandbox');
+                </t>
+                Xrp.Checkout.open({                    
+                    frameTarget: 'checkout-container',
+                    override: '<t t-esc="pay_link"/>'
+                });
+            </script>
+        </template>
+    </data>
+</odoo>

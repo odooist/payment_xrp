@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="payment_acquirer_xrp" model="payment.acquirer">
+            <field name="name">xrp</field>            
+            <field name="image_128" type="base64" file="payment_xrp/static/src/img/xrp_icon.jpg"/>
+            <field name="provider">xrp</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="view_template_id" ref="payment_xrp.xrp_form"/>
+            <field name="module_state">installed</field>
+            <field name="module_id" ref="base.module_payment_xrp"/>
+            <field name="sequence">1</field>
+            <field name="description" type="html">
+                <p>
+                    A payment gateway to accept online payments via xrp.com.
+                </p>
+                <ul class="list-inline">
+                    <li class="list-inline-item"><i class="fa fa-check"/>Online Payment</li>
+                    <li class="list-inline-item"><i class="fa fa-check"/>Payment Status Tracking</li>
+                </ul>
+            </field>
+            <field name="payment_icon_ids" eval='[(6, 0, [ref("payment.payment_icon_cc_bancontact"),
+                                                          ref("payment.payment_icon_cc_maestro"),
+                                                          ref("payment.payment_icon_cc_mastercard"),
+                                                          ref("payment.payment_icon_cc_visa"),
+                                                          ref("payment.payment_icon_cc_american_express")])]'/>
+        </record>
+
+    </data>
+</odoo>
